@@ -1,9 +1,9 @@
 
-#if defined _WIN32
+#ifdef _WIN32
 
     #include "ctrlc_win32.hpp"
 
-#elif defined _GNUG_
+#elif defined __GNUG__
 
     #include "ctrlc_linux.hpp"
 

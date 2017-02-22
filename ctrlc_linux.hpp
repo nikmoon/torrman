@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <signal.h>
+#include "ctrlc_signal.hpp"
 
 using namespace std;
 
