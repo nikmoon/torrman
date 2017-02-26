@@ -20,20 +20,14 @@
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/alert_types.hpp>
 
-#include "ctrlc_signal.hpp"
 #include "torrman.hpp"
 
 namespace lt = libtorrent;
 using namespace std;
 
 
-int main(int argc, char *argv[])
+void start_client()
 {
-    argc, argv;
-
-    // настраиваем корректное завершение программы по Ctrl-C
-    set_signal_handler();
-
     lt::session ses;
     ses.set_alert_mask(lt::alert::all_categories);
     lt::add_torrent_params atp;
@@ -58,6 +52,5 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    cout << "Завершаем программу" << endl;
-    return 0;
+    cout << "Завершаем программу клиента" << endl;
 }
