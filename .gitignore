@@ -3,6 +3,7 @@ torrents/
 *.torrent
 *.o
 torrman
+torrman.pro
 torrman.pro.user
 
 # Byte-compiled / optimized / DLL files
