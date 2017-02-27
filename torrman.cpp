@@ -30,10 +30,10 @@ void start_client()
 {
     lt::session ses;
     ses.set_alert_mask(lt::alert::all_categories);
-    lt::add_torrent_params atp;
-    atp.ti = new lt::torrent_info("test.torrent");
-    atp.save_path = "downloads";
-    ses.async_add_torrent(atp);
+    //lt::add_torrent_params atp;
+    //atp.ti = new lt::torrent_info("test.torrent");
+    //atp.save_path = "downloads";
+    //ses.async_add_torrent(atp);
 
     std::deque<lt::alert*> alerts;
     for(;;)
@@ -48,9 +48,9 @@ void start_client()
 
 //        ses.post_torrent_updates();
         this_thread::sleep_for(chrono::seconds(2));
-        if (EXIT_PROGRAM) {
-            break;
-        }
+//        if (EXIT_PROGRAM) {
+//            break;
+//        }
     }
     cout << "Завершаем программу клиента" << endl;
 }
