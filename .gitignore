@@ -2,6 +2,7 @@ torrents/
 *.swp
 *.torrent
 *.o
+*.py
 torrman
 torrman.pro
 torrman.pro.user
