@@ -6,6 +6,7 @@ torrents/
 torrman
 torrman.pro
 torrman.pro.user
+ui_mainwindow.h
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

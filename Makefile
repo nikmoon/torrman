@@ -7,8 +7,8 @@
 
 all: torrman
 
-torrman: torrman.o main.o mainwindow.o mainwindow.h.o torrentview.o
-	g++ -o torrman torrman.o main.o mainwindow.o mainwindow.h.o \
+torrman: torrman.o main.o mainwindow.o torrentview.o
+	g++ -o torrman torrman.o main.o mainwindow.o mainwindow.h.o torrentview.o torrentview.h.o \
 		-pthread -ltorrent-rasterbar -lboost_system `pkg-config --libs Qt5Widgets`
 	strip torrman
 
@@ -19,16 +19,16 @@ main.o: main.cpp mainwindow.h ui_mainwindow.h
 	g++ -std=c++11 -c -o main.o main.cpp `pkg-config --cflags Qt5Widgets` -fPIC
 
 mainwindow.o: mainwindow.cpp mainwindow.h ui_mainwindow.h
+	moc -omainwindow.h.cpp mainwindow.h
 	g++ -std=c++11 -c -o mainwindow.o mainwindow.cpp `pkg-config --cflags Qt5Widgets` -fPIC
+	g++ -std=c++11 -c -o mainwindow.h.o mainwindow.h.cpp `pkg-config --cflags Qt5Widgets` -fPIC
+	rm mainwindow.h.cpp
 
 torrentview.o: torrentview.cpp torrentview.hpp
+	moc -otorrentview.h.cpp torrentview.hpp
 	g++ -std=c++11 -c -o torrentview.o torrentview.cpp `pkg-config --cflags Qt5Widgets` -fPIC
-
-mainwindow.h.o: mainwindow.h.moc.cpp
-	g++ -std=c++11 -c -o mainwindow.h.o mainwindow.h.moc.cpp `pkg-config --cflags Qt5Widgets` -fPIC
-
-mainwindow.h.moc.cpp: mainwindow.h
-	moc -omainwindow.h.moc.cpp mainwindow.h
+	g++ -std=c++11 -c -o torrentview.h.o torrentview.h.cpp `pkg-config --cflags Qt5Widgets` -fPIC
+	rm torrentview.h.cpp
 
 ui_mainwindow.h: mainwindow.ui
 	uic mainwindow.ui -o ui_mainwindow.h
