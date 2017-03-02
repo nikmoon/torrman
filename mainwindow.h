@@ -14,6 +14,7 @@
 #include <QMainWindow>
 #include <QTimer>
 
+#include "torrentview.hpp"
 
 namespace lt = libtorrent;
 
@@ -33,21 +34,16 @@ public:
     ~MainWindow();
 
 
-    void addTorrent(lt::torrent_handle h);
-    void updateTorrentsStatus(lt::state_update_alert *a);
-    void updateTorrentState(lt::state_changed_alert *a);
-
 private:
     Ui::MainWindow *ui;
 
+    TorrentView *torrentView;
+
     QTimer *timer;
     lt::session *ses;
-    std::map<std::string, int> torrentsRowMap;
-    std::deque<lt::alert *> alerts;
-    int rowCount;
 
 private slots:
-    void updateWidget();
+    void updateView();
     void openTorrentFile();
 };
 
